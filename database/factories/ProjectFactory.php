@@ -15,7 +15,7 @@ class ProjectFactory extends Factory
     public function definition()
     {
         return [
-            'user_id' => 1,
+            'user_id' => User::factory(),
             'name' => $this->faker->word
         ];
     }

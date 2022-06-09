@@ -69,6 +69,18 @@ class ProjectPolicy
     }
 
     /**
+     * Determine whether the user can upload the file.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Project  $project
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function upload(User $user, Project $project)
+    {
+        return $user->id === $project->user_id;
+    }
+
+    /**
      * Determine whether the user can restore the model.
      *
      * @param  \App\Models\User  $user

@@ -7,16 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Project extends Model
 {
-    use HasFactory;
+  use HasFactory;
 
-    protected $fillable = ['name'];
+  protected $fillable = ['name'];
 
-    public function owner()
-    {
-        return $this->belongsTo(User::class, 'user_id');
-    }
+  public function owner()
+  {
+    return $this->belongsTo(User::class, 'user_id');
+  }
 
-    public function tasks(){
-      return $this->hasMany(Task::class);
-    }
+  public function tasks()
+  {
+    return $this->hasMany(Task::class);
+  }
+
+  public function getImagePathAttribute()
+  {
+    return !is_null($this->image) ? asset('storage/' . $this->image) : null;
+  }
 }

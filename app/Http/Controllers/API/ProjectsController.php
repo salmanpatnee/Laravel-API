@@ -22,7 +22,9 @@ class ProjectsController extends Controller
      */
     public function index()
     {
-        $projects = Project::where('user_id', auth()->user()->id)->paginate(5);
+        $projects = Project::where('user_id', auth()->user()->id)
+            ->withCount('tasks')
+            ->paginate(5);
 
         return new ProjectCollection($projects);
     }
@@ -52,6 +54,9 @@ class ProjectsController extends Controller
      */
     public function show(Project $project)
     {
+        //Loading project's tasks.
+        $project->tasks;
+
         return new ResourcesProject($project);
     }
 
@@ -69,6 +74,9 @@ class ProjectsController extends Controller
         ]);
 
         $project->update($attributes);
+
+        //Loading project's tasks.
+        $project->tasks;
 
         return new ResourcesProject($project);
     }
