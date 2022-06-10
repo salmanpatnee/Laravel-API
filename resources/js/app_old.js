@@ -4,13 +4,10 @@
  * building robust, powerful web applications using Vue and Laravel.
  */
 
-import Vue from 'vue';
-import router from './router';
 require('./bootstrap');
-import axios from 'axios';
-axios.defaults.withCredentials = true;
-axios.defaults.baseURL = 'http://laravel-api.test/'
-
+import Vue from 'vue';
+import VueRouter from './routes';
+Vue.use(VueRouter);
 import App from './components/App';
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -23,5 +20,5 @@ const app = new Vue({
     components: {
         App
     },
-    router
+    VueRouter
 });

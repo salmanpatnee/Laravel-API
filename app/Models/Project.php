@@ -23,6 +23,8 @@ class Project extends Model
 
   public function getImagePathAttribute()
   {
-    return !is_null($this->image) ? asset('storage/' . $this->image) : null;
+    return !is_null($this->image)
+      ? asset('storage/' . $this->image)
+      : null;
   }
 }
