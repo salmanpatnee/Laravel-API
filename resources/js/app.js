@@ -6,6 +6,8 @@
 
 import Vue from 'vue';
 import router from './router';
+import store from './store/index';
+
 require('./bootstrap');
 import axios from 'axios';
 axios.defaults.withCredentials = true;
@@ -18,10 +20,15 @@ import App from './components/App';
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-const app = new Vue({
-    el: '#app',
-    components: {
-        App
-    },
-    router
+
+store.dispatch('getUser').then(() => {
+
+    const app = new Vue({
+        el: '#app',
+        components: {
+            App
+        },
+        router,
+        store
+    });
 });
