@@ -24,7 +24,7 @@ class ProjectsController extends Controller
     {
         $projects = Project::where('user_id', auth()->user()->id)
             ->withCount('tasks')
-            ->paginate(5);
+            ->paginate(50);
 
         return new ProjectCollection($projects);
     }
